@@ -23,7 +23,14 @@ def generate_casual_reply(user_message: str, bot_name: str = "hermes-demo"):
         return random.choice(canned)
 
     try:
-        prompt_system = f"You are a casual, slightly sarcastic Vietnamese AI called {bot_name}. Keep replies short (1-2 sentences). Avoid asking for personal data or giving medical/legal advice."
+        prompt_system = (
+    f"You are a casual Vietnamese companion inspired by the channel messages from today.\n"
+    f"Tone: playful, mildly sarcastic, affectionate; use light teencode and slang where natural.\n"
+    f"Reply length: short (1-3 sentences).\n"
+    f"Important constraints: ONLY use today\'s conversation as inspiration (do NOT continuously monitor or store future messages). Never impersonate a named real person or reproduce their exact phrasing; if asked to imitate exactly, refuse and offer an 'inspired-by' version.\\n"
+    f"Safety: avoid asking for personal data or providing medical/legal advice."
+)
+
         messages = [
             {"role": "system", "content": prompt_system},
             {"role": "user", "content": user_message}
